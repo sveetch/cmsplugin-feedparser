@@ -1,59 +1,28 @@
 # -*- coding: utf-8 -*-
-from south.utils import datetime_utils as datetime
-from south.db import db
-from south.v2 import SchemaMigration
-from django.db import models
+from __future__ import unicode_literals
+
+from django.db import migrations, models
 
 
-class Migration(SchemaMigration):
+class Migration(migrations.Migration):
 
-    def forwards(self, orm):
-        # Adding model 'FeedparserPluginModel'
-        db.create_table(u'cmsplugin_feedparser_feedparserpluginmodel', (
-            (u'cmsplugin_ptr', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['cms.CMSPlugin'], unique=True, primary_key=True)),
-            ('url', self.gf('django.db.models.fields.CharField')(max_length=255)),
-            ('renderer', self.gf('django.db.models.fields.CharField')(default='basic-xml', max_length=100)),
-            ('template', self.gf('django.db.models.fields.CharField')(max_length=100)),
-            ('expiration', self.gf('django.db.models.fields.PositiveIntegerField')(default=0)),
-        ))
-        db.send_create_signal(u'cmsplugin_feedparser', ['FeedparserPluginModel'])
+    dependencies = [
+        ('cms', '0013_urlconfrevision'),
+    ]
 
-
-    def backwards(self, orm):
-        # Deleting model 'FeedparserPluginModel'
-        db.delete_table(u'cmsplugin_feedparser_feedparserpluginmodel')
-
-
-    models = {
-        'cms.cmsplugin': {
-            'Meta': {'object_name': 'CMSPlugin'},
-            'changed_date': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
-            'creation_date': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'language': ('django.db.models.fields.CharField', [], {'max_length': '15', 'db_index': 'True'}),
-            'level': ('django.db.models.fields.PositiveIntegerField', [], {'db_index': 'True'}),
-            'lft': ('django.db.models.fields.PositiveIntegerField', [], {'db_index': 'True'}),
-            'parent': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['cms.CMSPlugin']", 'null': 'True', 'blank': 'True'}),
-            'placeholder': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['cms.Placeholder']", 'null': 'True'}),
-            'plugin_type': ('django.db.models.fields.CharField', [], {'max_length': '50', 'db_index': 'True'}),
-            'position': ('django.db.models.fields.PositiveSmallIntegerField', [], {'null': 'True', 'blank': 'True'}),
-            'rght': ('django.db.models.fields.PositiveIntegerField', [], {'db_index': 'True'}),
-            'tree_id': ('django.db.models.fields.PositiveIntegerField', [], {'db_index': 'True'})
-        },
-        'cms.placeholder': {
-            'Meta': {'object_name': 'Placeholder'},
-            'default_width': ('django.db.models.fields.PositiveSmallIntegerField', [], {'null': 'True'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'slot': ('django.db.models.fields.CharField', [], {'max_length': '255', 'db_index': 'True'})
-        },
-        u'cmsplugin_feedparser.feedparserpluginmodel': {
-            'Meta': {'object_name': 'FeedparserPluginModel', '_ormbases': ['cms.CMSPlugin']},
-            u'cmsplugin_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['cms.CMSPlugin']", 'unique': 'True', 'primary_key': 'True'}),
-            'expiration': ('django.db.models.fields.PositiveIntegerField', [], {'default': '0'}),
-            'renderer': ('django.db.models.fields.CharField', [], {'default': "'basic-xml'", 'max_length': '100'}),
-            'template': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
-            'url': ('django.db.models.fields.CharField', [], {'max_length': '255'})
-        }
-    }
-
-    complete_apps = ['cmsplugin_feedparser']
+    operations = [
+        migrations.CreateModel(
+            name='FeedparserPluginModel',
+            fields=[
+                ('cmsplugin_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='cms.CMSPlugin')),
+                ('url', models.CharField(max_length=255, verbose_name='url')),
+                ('renderer', models.CharField(default=b'basic-xml', help_text='Feed renderer, your feed must be compatible with it', max_length=100, verbose_name='renderer', choices=[(b'basic-json', b'basic-json'), (b'basic-xml', b'basic-xml')])),
+                ('template', models.CharField(help_text='Template used to render the feed', max_length=100, verbose_name='template', choices=[(b'django_feedparser/basic_feed_renderer.html', b'Default template')])),
+                ('expiration', models.PositiveIntegerField(default=0, help_text='Cache expiration time until the feed is fetched again, in seconds', verbose_name='expiration')),
+            ],
+            options={
+                'abstract': False,
+            },
+            bases=('cms.cmsplugin',),
+        ),
+    ]
