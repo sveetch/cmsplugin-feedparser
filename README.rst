@@ -17,6 +17,7 @@ Links
 Requires
 ********
 
+* Django >= 1.7;
 * `DjangoCMS`_ >= 3.0;
 * `django-feedparser`_ >= 0.1.2;
 
@@ -41,6 +42,8 @@ Then import their settings: ::
     from django_feedparser.settings import *
     from cmsplugin_feedparser.settings import *
 
-Finally install app models in your database using Django migrations: ::
+Finally install plugin models in your database using migrations: ::
 
     python manage.py migrate
+
+Note than since version ``0.2.0``, this plugin has moved to Django migrations system, previous South migration will be freezed in their current state and have been moved to ``south_migrations`` directory as recommended since `South 1.0.x <http://south.readthedocs.org/en/latest/releasenotes/1.0.html>`_.
