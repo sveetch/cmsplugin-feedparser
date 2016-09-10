@@ -17,8 +17,8 @@ Links
 Requires
 ********
 
-* Django >= 1.7;
-* `DjangoCMS`_ >= 3.0;
+* Django >= 1.8;
+* `DjangoCMS`_ >= 3.3.1;
 * `django-feedparser`_ >= 0.1.2;
 
 Install

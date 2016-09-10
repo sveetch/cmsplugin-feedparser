@@ -25,7 +25,7 @@ setup(
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
     install_requires=[
-        'django-cms>=3.0.1',
+        'django-cms>=3.3.1',
         'django-feedparser>=0.2.0',
     ],
     include_package_data=True,
