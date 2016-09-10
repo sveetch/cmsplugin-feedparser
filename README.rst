@@ -9,7 +9,7 @@ cmsplugin-feedparser
 `django-feedparser`_ plugin for DjangoCMS
 
 .. Warning::
-    Version 0.3.0 has dropped support for ``DjangoCMS<=3.3.1``.
+    Version 0.3.0 has dropped support for ``DjangoCMS<3.3.1``.
 
 Links
 *****
