@@ -8,6 +8,9 @@ cmsplugin-feedparser
 
 `django-feedparser`_ plugin for DjangoCMS
 
+.. Warning::
+    Version 0.3.0 has dropped support for ``DjangoCMS<=3.3.1``.
+
 Links
 *****
 
@@ -46,4 +49,5 @@ Finally install plugin models in your database using migrations: ::
 
     python manage.py migrate
 
-Note than since version ``0.2.0``, this plugin has moved to Django migrations system, previous South migration will be freezed in their current state and have been moved to ``south_migrations`` directory as recommended since `South 1.0.x <http://south.readthedocs.org/en/latest/releasenotes/1.0.html>`_.
+.. Note::
+    Note than since version ``0.2.0``, this plugin has moved to Django migrations system, previous South migration will be freezed in their current state and have been moved to ``south_migrations`` directory as recommended since `South 1.0.x <http://south.readthedocs.org/en/latest/releasenotes/1.0.html>`_.

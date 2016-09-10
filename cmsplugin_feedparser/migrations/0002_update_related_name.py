@@ -5,7 +5,11 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
+    """
+    Required migration since DjangoCMS==3.3.1 see:
 
+    https://github.com/divio/django-cms/issues/5550
+    """
     dependencies = [
         ('cmsplugin_feedparser', '0001_initial'),
     ]
